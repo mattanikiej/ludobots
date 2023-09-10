@@ -23,6 +23,7 @@ class SIMULATION:
         for i in range(c.iters):
 
             self.robot.Sense(i)
+            self.robot.Think()
             self.robot.Act(i)
 
             p.stepSimulation()  # step through simulation
