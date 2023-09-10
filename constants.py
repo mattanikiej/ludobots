@@ -9,3 +9,5 @@ fl_phaseOffset = 0
 bl_amplitude = np.pi / 4
 bl_frequency = 10
 bl_phaseOffset = np.pi / 4
+
+numberOfGenerations = 30

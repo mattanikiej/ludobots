@@ -2,14 +2,14 @@ from world import WORLD
 from robot import ROBOT
 import pybullet as p
 import pybullet_data
-import time
 import constants as c
+import time
 
 
 class SIMULATION:
-    def __init__(self):
-
-        self.physicsClient = p.connect(p.GUI)  # connect client to gui
+    def __init__(self, directOrGui):
+        self.directOrGui = directOrGui
+        self.physicsClient = p.connect(p.DIRECT) if directOrGui == "DIRECT" else p.connect(p.GUI)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0, 0, -9.8)
 
@@ -27,7 +27,10 @@ class SIMULATION:
             self.robot.Act(i)
 
             p.stepSimulation()  # step through simulation
+            if self.directOrGui == "GUI":
+                time.sleep(1/100)
 
-            time.sleep(1 / 60)
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()
 
 
